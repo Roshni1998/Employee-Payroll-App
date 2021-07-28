@@ -8,9 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/employee_payroll.css">
   <title>Employee Payroll Form</title>
+  <script defer src="../js/Employee_Payroll_Form.js"></script>
+  <script defer src="../js/Employee_Payroll.js"></script>
 </head>
 
 <body>
+  <!-- UC 1-->
   <header class="header header-content">
     <div class="logo-content">
       <img src="../assets/images/logo.png" alt="">
@@ -20,13 +23,16 @@
       </div>
     </div>
   </header>
-  <div class="form-content">
-    <form class="form" action="#" onsubmit="save(event); return false">
+  <div id="formId" class="form-content">
+    <form class="form" action="#" onrest="resetForm()" onsubmit="save()">
+      <!-- UC 2-->
       <div class="form-head">Employee Payroll Form</div>
       <div class="row-content">
         <label class="label text" for="name">Name</label>
         <input class="input" type="text" id="name" name="name" placeholder="Your name.." required>
+        <error-output class="text-error" for="text"></error-output>
       </div>
+      <!-- UC 3-->
       <div class="row-content">
         <label class="label text" for="profile">Profile Image</label>
         <div class="profile-radio-content">
@@ -149,15 +155,6 @@
       </div>
     </form>
   </div>
-  <script>
-    const salary = document.querySelector('#salary');
-    const output = document.querySelector('.salary-output');
-    output.textContent = salary.value;
-    salary.addEventListener('input', function () {
-      output.textContent = salary.value;
-    });
-  </script>
-
 </body>
 
 </html>

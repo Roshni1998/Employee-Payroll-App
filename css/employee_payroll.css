@@ -159,6 +159,13 @@ select {
     text-align: center;
 }
 
+error-output {
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
+
 @media only screen and (max-width) {
   .cancelButton {
     margin-left: 0px;
