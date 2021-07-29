@@ -1,4 +1,3 @@
-
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
@@ -23,18 +22,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
-const save = () => {
+const save = (event) => {
   try {
       let employeePayrollData = createEmployeePayroll();
+      createAndUpdateStorage(employeePayrollData);
   } catch (e) {
       return;
   }
 }
 
+function createAndUpdateStorage(employeePayrollData) {
+  let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+
+  if(employeePayrollData != undefined) {
+      employeePayrollList.push(EmployeePayrollData);
+  } else {
+      employeePayrollList = [employeePayrollData]
+  }
+  alert(JSON.stringify(employeePayrollData));
+  localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+}
+
+
 const createEmployeePayroll = () => {
   let employeePayrollData = new EmployeePayrollData();
   try {
       employeePayrollData.name = getInputValueById('#name');
+      createAndUpdateStorage(employeePayrollData);
   } catch (e) {
       setTextValue('.text-error', e);
       throw e;
