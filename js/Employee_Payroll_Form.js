@@ -22,9 +22,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
-const save = (event) => {
+const save = () => {
   try {
       let employeePayrollData = createEmployeePayroll();
+      console.log("Data: " ,employeePayrollData);
       createAndUpdateStorage(employeePayrollData);
   } catch (e) {
       return;
@@ -33,9 +34,10 @@ const save = (event) => {
 
 function createAndUpdateStorage(employeePayrollData) {
   let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-
-  if(employeePayrollData != undefined) {
-      employeePayrollList.push(EmployeePayrollData);
+  
+  if(employeePayrollList != undefined) {
+      console.log("Data: " ,employeePayrollData);
+      employeePayrollList.push(employeePayrollData);
   } else {
       employeePayrollList = [employeePayrollData]
   }
@@ -45,10 +47,10 @@ function createAndUpdateStorage(employeePayrollData) {
 
 
 const createEmployeePayroll = () => {
+  console.log("clicked");
   let employeePayrollData = new EmployeePayrollData();
   try {
       employeePayrollData.name = getInputValueById('#name');
-      createAndUpdateStorage(employeePayrollData);
   } catch (e) {
       setTextValue('.text-error', e);
       throw e;
@@ -64,6 +66,7 @@ const createEmployeePayroll = () => {
   alert(JSON.stringify(employeePayrollData));
   return employeePayrollData;
 }
+
 
 const getSelectedValues = (propertyValue) => {
   let allItems = document.querySelectorAll(propertyValue);
