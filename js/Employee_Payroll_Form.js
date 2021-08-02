@@ -1,6 +1,5 @@
 let isUpdate = false;
 let employeePayrollObj = {};
-
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
@@ -101,7 +100,7 @@ const setForm = () => {
   setValue('#day', date[0]);
   setValue('#month', date[1]);
   setValue('#year', date[2]);
-}
+} 
 
 const resetForm = () => {
   setValue('#name','');
@@ -113,6 +112,19 @@ const resetForm = () => {
   setSelectedIndex('#day', 0);
   setSelectedIndex('#month', 0);
   setSelectedIndex('#year', 0);
+}
+
+const setSelectedValues = (propertyValue, value) => {
+  let allItems = document.querySelectorAll(propertyValue);
+  allItems.forEach(item => {
+    if(Array.isArray(value)) {
+      if (value.includes(item.value)) {
+        item.checked = true;
+      }
+    }
+    else if (item.value === value)
+      item.checked = true;
+  });
 }
 
 const unsetSelectedValues = (propertyValue) => {
@@ -143,15 +155,4 @@ const checkForUpdate = () => {
   if (!isUpdate) return;
   employeePayrollObj = JSON.parse(employeePayrollJson);
   setForm();
-}
-
-const setSelectedValues = (propertyValue, value) => {
-  let allItems = document.querySelectorAll(propertyValue);
-  allItems.forEach(item => {
-    if(Array.isArray(value)) {
-      if (value.includes(item.value)) {
-        item.checked = true;
-      }
-    }
-  });
 }
