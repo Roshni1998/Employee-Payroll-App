@@ -1,4 +1,3 @@
-
 class EmployeePayrollData {
     
   // Getter and Setter method
